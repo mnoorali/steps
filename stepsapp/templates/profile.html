@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="hero-unit">
+    <h3> Profile For User: {{ user.username }}</h3><br>
+    <p>Email: <b>{{ user.email }}</p></b>
+
+    {% if member %}
+        <p>Name: <b>{{ member.first_name }} {{ member.last_name }}</p></b>
+        <p>Group Name: <b>{{ member.groupname }}</p></b>
+        <br/>
+    {% else %}
+        <b>No more info available.</b>
+    {% endif %}
+</div>
+
+{% endblock %}

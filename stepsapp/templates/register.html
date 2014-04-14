@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Login Please{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="hero-unit">
+  <!--  <h3> {{ msg }} </h3> -->
+    <div class="container">
+        {% if registered %}
+        <p>Thank you for registering.</p>
+        <p>A confirmation email has been sent to your email address.</p>
+        <p><a href="/login/">Login</a> when you are ready.</p>
+        {% else %}
+        <form class="form-signin span8" id="user_form" method="post" action="/register/"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3 class="form-signin-heading">Please Sign up Here</h3>
+
+            <!-- Display each form here -->
+
+              {% if form.non_field_errors %}
+                <ul>
+                  {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+
+                {% for field in user_form %}
+                  <div id="{{ field.auto_id }}_container">
+                    {{ field.help_text }}
+                    <div>
+                      {{ field.label_tag }} {{ field }}
+                    </div>
+                    <div id="{{ field.auto_id }}_errors">
+                      {{ field.errors }}
+                    </div>
+                  </div>
+                {% endfor %}
+
+                {% for field in members_form %}
+                  <div id="{{ field.auto_id }}_container">
+                    {{ field.help_text }}
+                    <div>
+                      {{ field.label_tag }} {{ field }}
+                    </div>
+                    <div id="{{ field.auto_id }}_errors">
+                      {{ field.errors }}
+                    </div>
+                  </div>
+                {% endfor %}
+<!--
+            {% for field in user_form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}<br />
+            {{ field }}<br />
+            {% endfor %}
+
+            {% for field in members_form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field.label_tag }} {{ field }}
+            {% endfor %}
+-->
+            <br />
+            <!-- Provide a button to click to submit the form. -->
+            <input class="btn btn-primary" type="submit" name="submit" value="Register"/>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

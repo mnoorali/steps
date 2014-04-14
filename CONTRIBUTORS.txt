@@ -1,0 +1,7 @@
+The following people have contributed to this repository. Their email
+address or GitHub username follows their name.
+
+Nathan Yergler <nyergler>
+Peter <peterarenot>
+Angus <angusb>
+Paulius Zaleckas <pauliuszaleckas>

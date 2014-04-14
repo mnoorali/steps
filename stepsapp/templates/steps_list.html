@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Steps List{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="hero-unit">
+ 
+   <center> <h4>Steps History For: {{ member.first_name }} {{ member.last_name }}</h4> </center>
+
+<p class="text-center">
+  <table class="table table-bordered table-striped table-hover table-condensed">
+  	<th>Date</th><th>Number Of Steps</th>
+	{% for record in steps_list %}
+	 <tr>
+   		<td>{{ record.stepsdate }}</td> <td>{{ record.steps }}</td>
+  	 </tr>
+	{% endfor %}
+	</table>
+</p>
+
+{% endblock %}
+
+{% block sidebar %}
+<p class="text-center">
+  Name: <b> {{ member.first_name }} {{ member.last_name }}</b>
+</p>
+<p class="text-center">
+  Group: <b> {{ member.groupname }}</b> 
+</p>
+<p class="text-center">
+  Event: <b> {{ event.eventname }}</b> 
+</p>
+
+{% endblock %}

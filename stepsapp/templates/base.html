@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+  <head>
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+          rel="stylesheet" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{% static 'bootstrap/css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap-responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/jquery-ui.css' %}" rel="stylesheet">
+
+	<title>WeWalk - {% block title %}{% endblock %}</title>
+         
+  </head>
+
+  <body>
+
+<!--
+  	<div>
+      {{ user }}
+      {% if user.is_anonymous %}
+      <a href="{% url 'django.contrib.auth.views.login' %}">login</a>
+      {% else %}
+      <a href="{% url 'django.contrib.auth.views.logout' %}">logout</a>
+      {% endif %}
+    </div>
+-->
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+           <div class="container">
+               <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+               </button>
+               <a class="brand" href="/"><i class="icon-home icon-white"> </i> WeWalk</a>
+               <div class="nav-collapse collapse">
+                   <ul class="nav pull-right">
+                           {% if user.is_authenticated %}
+                            <li class="navbar-text">Welcome, {{ user.username }}!</li>
+                            <li><a href="/logout/">Logout</a></li>
+                            <li><a href="/profile/">Profile</a></li>
+                           {% else %}
+                            <li><a href="/register/">Register</a></li>
+                            <li><a href="/login/">Login</a></li>
+                           {% endif %}
+                       </ul>
+                       <ul class="nav">
+                           {% if user.is_authenticated %}
+                            <li><a href="/enter_steps/">Steps Entry</a></li>
+                            <li><a href="/steps_list/">Steps History</a></li>
+                       <!--     <li><a href="/stepsapp/add_category/">Add Category</a></li>  -->
+                           {% endif %}
+                           
+                   </ul>
+               </div>
+               <!--/.nav-collapse -->
+           </div>
+       </div>
+    </div>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3">
+                    <div class="well sidebar-nav">
+                           {% block sidebar %}
+                           {% endblock %}
+ <!-- side bar text here -->
+                    </div>
+                    <!--/.well -->
+                </div>
+                <!--/span-->
+                <div class="span8">
+				    {% block content %}
+				    {% endblock %}
+           {% block bottom %}
+            {% endblock %}
+                </div>
+  
+                <!--/span-->
+            </div>
+            <!--/row-->
+        </div>
+        <!--/.fluid-container-->
+
+        <hr>
+
+        <footer>
+            <div class="container">
+                <p>&copy; WeWalk: Walk, track, save, repeat.</p>
+            </div>
+        </footer>
+
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/jquery-2.1.0.js' %}"></script>
+    <script src="{% static 'bootstrap/js/stepsapp-ajax.js' %}"></script>
+    <script src="{% static 'bootstrap/js/jquery-ui.js' %}"></script>
+
+             <script>
+              $(function() {
+                $( "#id_stepsdate" ).datepicker({
+               });
+              });
+            </script>
+
+  </body>
+</html>

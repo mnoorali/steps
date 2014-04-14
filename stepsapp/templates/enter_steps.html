@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Enter Your Steps{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="hero-unit">
+ 
+    <h4>Enter your steps</h4>
+    <div class="container">
+        <form id="steps_form" method="post" action="/enter_steps/">
+            {% csrf_token %}
+<!--
+            {% if form.non_field_errors %}
+                <ul>
+                  {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}<br/>
+            {% endfor %}
+
+            Date: <input type="text" name="stepsdate" id="datepicker" value='{{ field.date }}'>
+            Steps: <input type="text" name="steps" value='{{ field.steps }}' >
+
+            <input type="hidden" name="username" value='{{ user.username }}'>
+-->
+
+             {% for field in steps_form %}
+              <div id="{{ field.auto_id }}_container">
+                {{ field.help_text }}
+
+                  {{ field.label_tag }} {{ field }}
+
+                <div class="text-error" id="{{ field.auto_id }}_errors">
+                  {{ field.errors }}
+                </div>
+              </div>
+            {% endfor %}
+       <p class="text-error"> {{ msg }} </p>
+            <button class="btn btn-primary" type="submit" name="submit">Save Steps</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block bottom %}
+{% load static %}
+<p class="text-center">
+  <table class="table table-bordered table-striped table-hover table-condensed">
+      <center><strong>Your Status for Event: {{ event.eventname }}</strong></center>
+      <tr class="success">
+        <td>Your Total Steps: {{ steps_info.sum }} </td>
+        <td>Your Average: {{steps_info.avg|floatformat:0}} </td>
+      </tr>
+      <tr class="success">
+        <td>Your Group's Total Steps: {{ group_steps_info.sum }} </td>
+        <td>Your Group's Average: {{group_steps_info.avg|floatformat:0}} </td>
+      </tr>
+  </table>
+</p>
+{% endblock %}
+
+{% block sidebar %}
+<p class="text-center">
+  Name: <b> {{ member.first_name }} {{ member.last_name }}</b>
+</p>
+<p class="text-center">
+  Group: <b> {{ member.groupname }}</b> 
+</p>
+<p class="text-center">
+  Event: <b> {{ event.eventname }}</b> 
+</p>
+
+{% endblock %}
