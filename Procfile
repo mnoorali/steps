@@ -1,1 +1,1 @@
-web: gunicorn stepsapp.wsgi
+web: gunicorn stepsproj.wsgi
