@@ -72,11 +72,11 @@ def RegisterView(request):
             email_text = email_text + 'If you have to reset the password, please use Reset Password link on the login page.'
             email_text = email_text + 'Thanks!'
 
-            email = EmailMessage('Welcome to WeWalk.', email_text, to=[user.email])
+            email = EmailMessage('Welcome to iWalk.', email_text, to=[user.email])
             email.send()
 
             email_text = 'Please check.'
-            email = EmailMessage('New Account Created On WeWalk.', email_text, to=['munir@noorali.com'])
+            email = EmailMessage('New Account Created On iWalk.', email_text, to=['munir@noorali.com'])
             email.send()
 
         # Invalid form or forms - mistakes or something else?
