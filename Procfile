@@ -1,1 +1,1 @@
-web: gunicorn stepsproj.wsgi
+web: gunicorn stepsproj.wsgi -b $PORT
