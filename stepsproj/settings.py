@@ -1,12 +1,6 @@
 # Django settings for stepsproj project.
 import os.path
 
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -28,21 +22,17 @@ EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'stepsdb',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': 'stepsuser',
-        'PASSWORD': 'steps123',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
-    }
-}
-
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['*']
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+#        'NAME': 'stepsdb',                      # Or path to database file if using sqlite3.
+#        # The following settings are not used with sqlite3:
+#        'USER': 'stepsuser',
+#        'PASSWORD': 'steps123',
+#        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+#        'PORT': '',                      # Set to empty string for default.
+#    }
+#}
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -79,27 +69,6 @@ MEDIA_ROOT = ''
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = ''
-
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/var/www/example.com/static/"
-STATIC_ROOT = 'staticfiles'
-
-# URL prefix for static files.
-# Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
-
-# Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(
-        os.path.dirname(__file__),
-        'static',
-    ),
-)
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -153,7 +122,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 	'stepsapp',
-    'south',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -186,5 +154,48 @@ LOGGING = {
 }
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Hosts/domain names that are valid for this site; required if DEBUG is False
+# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ['*']
+
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/var/www/example.com/static/"
+STATIC_ROOT = 'staticfiles'
+
+# URL prefix for static files.
+# Example: "http://example.com/static/", "http://static.example.com/"
+STATIC_URL = '/static/'
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(
+        os.path.dirname(__file__), 'static'),
+)
+
+
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'd71vii901f7320',
+    'HOST': 'ec2-54-204-45-196.compute-1.amazonaws.com',
+    'PORT': 5432,
+    'USER': 'bczmnjgnrobqjo',
+    'PASSWORD': 'r5OMvFI-MHMoe1M8mbIFvXuD9_'
+  }
+}
+
