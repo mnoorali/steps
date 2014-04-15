@@ -115,7 +115,7 @@ def StepsView(request):
     group_members = Members.objects.filter(groupname=member.groupname).values_list('username')
     group_steps_info = Stepslog.objects.filter(username__in=group_members).aggregate(avg=Avg('steps'), sum=Sum('steps'))
 
-    msg = ''
+    msg = ' '
     # A HTTP POST?
     if request.method == 'POST':
         # msg = ' method post '
@@ -185,4 +185,6 @@ def Profile(request):
     except:
         up = None
 
-    return render_to_response('profile.html', {'u': u, 'member': member}, context)
+    event = Events.objects.get(status='Active')
+
+    return render_to_response('profile.html', {'u': u, 'member': member, 'event': event}, context)

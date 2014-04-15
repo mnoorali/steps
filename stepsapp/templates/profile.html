@@ -19,3 +19,16 @@
 </div>
 
 {% endblock %}
+
+{% block sidebar %}
+<p class="text-center">
+  Name: <b> {{ member.first_name }} {{ member.last_name }}</b>
+</p>
+<p class="text-center">
+  Group: <b> {{ member.groupname }}</b> 
+</p>
+<p class="text-center">
+  Event: <b> {{ event.eventname }}</b> 
+</p>
+
+{% endblock %}
