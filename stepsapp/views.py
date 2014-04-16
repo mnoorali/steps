@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from stepsapp.models import Contact, Stepslog, Members, Events
 
 import forms
+import datetime
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -166,14 +167,20 @@ def StepsList(request):
     context = RequestContext(request)
     msg = ''
 
+    curr_date = datetime.date.today() + datetime.timedelta(days=1)
     event = Events.objects.get(status='Active')
+    diff_days = curr_date - event.startdate
     member = Members.objects.get(username=request.user)
     steps_list = Stepslog.objects.filter(username=request.user).order_by('-stepsdate')
-    #steps_info = Stepslog.objects.filter(username=request.user).aggregate(avg=Avg('steps'), sum=Sum('steps'), count=Count())
-    steps_info = 0
+
+    steps_count = Stepslog.objects.filter(username=request.user).count()
+
+    missing_steps = diff_days.days - steps_count - 1
+
     # Render the form with error messages (if any).
     return render_to_response('steps_list.html', {'steps_list': steps_list, 'msg': msg, 'member': member,
-        'event': event, 'steps_info': steps_info}, context)
+        'event': event, 'missing_steps': missing_steps, 'diff_days': diff_days,
+        'steps_count': steps_count}, context)
 
 @login_required
 def Profile(request):
