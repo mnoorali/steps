@@ -22,6 +22,19 @@ class LoggedInMixin(object):
     def dispatch(self, *args, **kwargs):
         return super(LoggedInMixin, self).dispatch(*args, **kwargs)
 
+@login_required
+def IndexView(request):
+
+    context = RequestContext(request)
+
+    msg = ' Index Page '
+
+    event = Events.objects.get(status='Active')
+    member = Members.objects.get(username=request.user)
+
+    return render_to_response(
+            'index.html',
+            { 'member': member, 'event': event,  'msg': msg }, context)
 
 def RegisterView(request):
 
