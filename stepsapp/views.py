@@ -144,9 +144,16 @@ def StepsView(request):
             stepslog.eventname = event.eventname
 
             # Verify that entered date is within the event start/end dates.
-
             if stepslog.stepsdate < event.startdate or stepslog.stepsdate > event.enddate:
                 msg = 'Your date should be between start and end date of this event. Try a different date.'
+             #   msg = msg + 'Please check event start/end dates on the left of this page.'
+                return render_to_response('enter_steps.html', {'steps_form': steps_form, 
+                    'msg': msg, 'member': member, 'event': event, 'steps_info': steps_info,
+                    'group_steps_info': group_steps_info}, context)
+
+            # Verify that entered date is not a future date.
+            if stepslog.stepsdate >= datetime.date.today():
+                msg = 'You can not enter steps for a future date. Try a past date.'
              #   msg = msg + 'Please check event start/end dates on the left of this page.'
                 return render_to_response('enter_steps.html', {'steps_form': steps_form, 
                     'msg': msg, 'member': member, 'event': event, 'steps_info': steps_info,
