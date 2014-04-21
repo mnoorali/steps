@@ -143,6 +143,17 @@ def StepsView(request):
             stepslog.username = request.user
             stepslog.eventname = event.eventname
 
+            # Verify that entered date is within the event start/end dates.
+
+            if stepslog.stepsdate < event.startdate or stepslog.stepsdate > event.enddate:
+                msg = 'Your date should be between start and end date of this event. Try a different date.'
+             #   msg = msg + 'Please check event start/end dates on the left of this page.'
+                return render_to_response('enter_steps.html', {'steps_form': steps_form, 
+                    'msg': msg, 'member': member, 'event': event, 'steps_info': steps_info,
+                    'group_steps_info': group_steps_info}, context)
+
+
+            # Verify that data is not duplicate.
             try:
                 stepslog.save()
             except IntegrityError as e:
