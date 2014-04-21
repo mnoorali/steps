@@ -1,6 +1,6 @@
 # Create your views here.
 from django.template import RequestContext
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from stepsapp.forms import UserForm, MembersForm, StepsForm
@@ -226,3 +226,9 @@ def Profile(request):
     event = Events.objects.get(status='Active')
 
     return render_to_response('profile.html', {'u': u, 'member': member, 'event': event}, context)
+
+def Error404(request):
+    return render(request,'404.html')
+
+def Error500(request):
+    return render(request,'500.html')

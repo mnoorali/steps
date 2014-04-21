@@ -41,3 +41,6 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += staticfiles_urlpatterns()
+
+handler404 = 'stepsapp.views.Error404'
+handler500 = 'stepsapp.views.Error500'

@@ -7,7 +7,7 @@ TEMPLATE_DEBUG = DEBUG
 USE_THOUSAND_SEPARATOR = True
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Munir Noorali', 'clist@noorali.com'),
 )
 
 MANAGERS = ADMINS
