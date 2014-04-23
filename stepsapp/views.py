@@ -36,6 +36,15 @@ def IndexView(request):
             'index.html',
             { 'member': member, 'event': event,  'msg': msg }, context)
 
+
+def HelpView(request):
+
+    context = RequestContext(request)
+    msg = ' Index Page '
+
+    return render_to_response('howitworks.html', context)
+
+
 def RegisterView(request):
 
     # Like before, get the request's context.
@@ -232,3 +241,5 @@ def Error404(request):
 
 def Error500(request):
     return render(request,'500.html')
+
+

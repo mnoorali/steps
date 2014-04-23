@@ -41,10 +41,12 @@
                    <ul class="nav pull-right">
                            {% if user.is_authenticated %}
                             <li class="navbar-text">Welcome, {{ user.username }}!</li>
-                            <li><a href="/logout/">Logout</a></li>
+                            <li><a href="/howitworks/">HowItWorks</a></li>                            
                             <li><a href="/profile/">Profile</a></li>
+                            <li><a href="/logout/">Logout</a></li>                            
                            {% else %}
                             <li><a href="/register/">Register</a></li>
+                            <li><a href="/howitworks/">HowItWorks</a></li>
                             <li><a href="/login/">Login</a></li>
                            {% endif %}
                        </ul>

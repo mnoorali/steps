@@ -1,7 +1,7 @@
 # Django settings for stepsproj project.
 import os.path
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 USE_THOUSAND_SEPARATOR = True
